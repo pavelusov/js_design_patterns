@@ -1,4 +1,5 @@
-var leadself = 'Me: ',
+"use strict";
+var leadself = "Me: ",
 		leadcomputer = "PC: ",
 		aSaid= ["This is a Cyber Chat"],
 		msgYes = "Yes, that's a great idea.",
@@ -10,23 +11,33 @@ var leadself = 'Me: ',
 									"You’ve got about as much charm as a dead slug."];
 
 function talk(msg) {
-
+  echo(leadself + msg);
 }
 
 function replayYesNo() {
-
+  var msg = Math.random() > .5 ? msgYes : msgNo;
+  echo(leadcomputer + msg);
 }
 
 function saySassyStuff() {
-
+  var index = Math.floor(Math.random() * aSassyStuff.length);
+  var msg = aSassyStuff[index];
+  echo(leadcomputer + msg);
 }
 
 function echo(msg) {
+	aSaid.push('<div>' + msg + '</div>');
 
+  var MAX_ROW_VALUE = 6;
+  var aSaidLength = aSaid.length;
+	var start = Math.max(aSaidLength - MAX_ROW_VALUE, 0);
+  var out = '';
+
+  for (var i = start; i < aSaidLength; i += 1) {
+    out += aSaid[i];
+  }
+
+  $('.advert').html(out);
+	$('#talk span').text(msg);
 }
-
-
-
-
-
 
